@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home Page</title>
+    <script src="Scripts/jquery-1.7.1.min.js"></script>
+    <script src="Scripts/jquery.ad-gallery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.ad-gallery').adGallery({
+                slideshow: {
+                    autostart: true,
+                    onStart: true,
+                    start_label: '',
+                    stop_label: '',
+                    countdown_prefix: '',
+                    countdown_sufix: '',
+                    stop_on_scroll: false
+                }
+
+            });
+
+        });
+
+        function navToShowCase()
+        {
+            location.href="cases.html";
+        }
+    </script>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+        body { text-align: center; margin: auto; line-height: 1; }
+        ul { list-style-image: url(list-style.gif); }
+        #gallery { width: 100%; margin: auto; background-color: #e4e4e4; }
+        #descriptions .ad-image-description { position: absolute; }
+        #descriptions .ad-image-description .ad-description-title { display: block; }
+        /* about silder */
+        .ad-gallery { width: 600px; }
+        .ad-gallery, .ad-gallery * { margin: 0; padding: 0; }
+        .ad-gallery .ad-image-wrapper { width: 100%; height: 473px; /*margin-bottom: 10px;*/ position: relative; overflow: hidden; }
+        .ad-gallery .ad-image-wrapper .ad-loader { position: absolute; z-index: 10; top: 48%; left: 48%; border: 1px solid #CCC; }
+        .ad-gallery .ad-image-wrapper .ad-next { position: absolute; right: 0; top: 0; width: 25%; height: 100%; cursor: pointer; display: block; z-index: 200; }
+        .ad-gallery .ad-image-wrapper .ad-prev { position: absolute; left: 0; top: 0; width: 25%; height: 100%; cursor: pointer; display: block; z-index: 200; }
+        .ad-gallery .ad-image-wrapper .ad-prev, .ad-gallery .ad-image-wrapper .ad-next { /* Or else IE will hide it */ background: url(Images/trans.gif); }
+        .ad-gallery .ad-image-wrapper .ad-prev .ad-prev-image, .ad-gallery .ad-image-wrapper .ad-next .ad-next-image { background: url(Images/ad_prev.png); width: 30px; height: 30px; display: none; position: absolute; top: 47%; left: 0; z-index: 101; }
+        .ad-gallery .ad-image-wrapper .ad-next .ad-next-image { background: url(Images/ad_next.png); width: 30px; height: 30px; right: 0; left: auto; }
+        .ad-gallery .ad-image-wrapper .ad-image { position: absolute; overflow: hidden; top: 0; left: 0; z-index: 9; }
+        .ad-gallery .ad-image-wrapper .ad-image a img { border: 0; }
+        .ad-gallery .ad-image-wrapper .ad-image .ad-image-description { position: absolute; bottom: 0px; left: 0px; padding: 7px; text-align: left; width: 100%; z-index: 2; background: url(Images/opa75.png); color: #000; }
+        * html .ad-gallery .ad-image-wrapper .ad-image .ad-image-description { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (enabled=true, sizingMethod=scale, src='opa75.png'); }
+        .ad-gallery .ad-image-wrapper .ad-image .ad-image-description .ad-description-title { display: block; }
+        .ad-gallery .ad-controls { /*height: 20px;*/ }
+        .ad-gallery .ad-info { float: left; color: #e4e4e4; }
+        .ad-gallery .ad-slideshow-controls { float: right; }
+        .ad-gallery .ad-slideshow-controls .ad-slideshow-start, .ad-gallery .ad-slideshow-controls .ad-slideshow-stop { padding-left: 5px; cursor: pointer; }
+        .ad-gallery .ad-slideshow-controls .ad-slideshow-countdown { padding-left: 5px; font-size: 0.9em; color: #e4e4e4; }
+        .ad-gallery .ad-slideshow-running .ad-slideshow-start { cursor: default; font-style: italic; }
+        .ad-gallery .ad-nav { width: 543px; position: relative; text-align: center; margin: auto; }
+        .ad-gallery .ad-forward, .ad-gallery .ad-back { position: absolute; top: 0; height: 100%; z-index: 10; }
+        /* IE 6 doesn't like height: 100% */
+        * html .ad-gallery .ad-forward, .ad-gallery .ad-back { height: 100px; }
+        .ad-gallery .ad-back { cursor: pointer; top: 35px; left: -74px; width: 48px; display: block; background: url(Images/banner_arrowleft_default.png) no-repeat; }
+        .ad-gallery .ad-forward { cursor: pointer; top: 35px; right: -74px; width: 48px; display: block; background: url(Images/banner_arrowright_default.png) no-repeat; }
+        .ad-gallery .ad-nav .ad-thumbs { overflow: hidden; width: 100%; text-align: center; margin: auto; }
+        .ad-gallery .ad-thumbs .ad-thumb-list { float: left; width: 9000px; list-style: none; }
+        .ad-gallery .ad-thumbs li { float: left; padding: 14px 74px 14px 0; }
+        .ad-gallery .ad-thumbs li:last-of-type { padding-right: 0; }
+        .ad-gallery .ad-thumbs li a { display: block; }
+        .ad-gallery .ad-thumbs li a img { display: block; }
+        .ad-gallery .ad-thumbs li a.ad-active img { }
+        /* Can't do display none, since Opera won't load the images then */
+        .ad-preloads { position: absolute; left: -9000px; top: -9000px; }
+        /* about header*/
+        #header { width: 100%; height: 52px; background: url("Images/Header_bg.png") repeat-x; margin-top: 2px; }
+        #logo { width: 56%; background: url("Images/header_ODC_Logo.png") left no-repeat; position: relative; height: 52px; margin: auto; }
+        .banner { height: 52px; list-style: none; text-decoration: none; float: right; position: relative; }
+        .banner > li { background: url("Images/banner.png") no-repeat; height: 52px; float: left; }
+        .banner .nav-case { background-position: 0 0; width: 104px; }
+        .banner .nav-study { background-position: -104px 0; width: 130px; }
+        .banner .nav-coe { background-position: -234px 0; width: 104px; }
+        .banner .nav-news { background-position: -338px 0; width: 101px; }
+        .banner .nav-us { background-position: -439px 0; width: 101px; }
+        .banner .nav-case:hover { background-position: 0 -52px; }
+        .banner .nav-study:hover { background-position: -104px -52px; }
+        .banner .nav-coe:hover { background-position: -234px -52px; }
+        .banner .nav-news:hover { background-position: -338px -52px; }
+        .banner .nav-us:hover { background-position: -439px -52px; }
+
+        /*clients*/
+        .clients { margin: 36px 0; }
+
+        /*footer*/
+        #footer { background-color: #434343; text-align: center; margin: 0; padding: 20px 0; }
+
+        #footer > img { margin: 0 0 10px 0; text-align: center; }
+
+        #footer span { padding: 0 15px; font-family: 宋体 Arial; font-weight: lighter; color: #afafaf; }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            <ul class="banner">
+                <li class="nav-case" onclick="navToShowCase();"></li>
+                <li class="nav-study"></li>
+                <li class="nav-coe"></li>
+                <li class="nav-news"></li>
+                <li class="nav-us"></li>
+             <!--    <li class="nav-case"></li>
+                <li class="nav-study"></li>
+                <li class="nav-coe"></li>
+                <li class="nav-news"></li>
+                <li class="nav-us"></li> -->
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="gallery" class="ad-gallery">
+            <div class="ad-image-wrapper">
+            </div>
+            <div class="ad-controls">
+            </div>
+            <div class="ad-nav">
+                <div class="ad-thumbs">
+                    <ul class="ad-thumb-list">
+                        <li>
+                            <a href="Images/Banner01.png">
+                                <img src="Images/01OfficeMap_normal.png" class="image0">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Images/Banner01.png">
+                                <img src="Images/02BIdemo_normal.png" class="image1">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Images/Banner01.png">
+                                <img src="Images/03iLife_normal.png" class="image2">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Images/Banner01.png">
+                                <img src="Images/02BIdemo_normal.png" class="image3">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="clients">
+            <img src="Images/clients_logo.png" />
+        </div>
+    </div>
+    <div id="footer">
+        <img src="Images/Footer_ODC_logo.png" />
+        <div><span>Copyright 2013 iSoftStone Holdings Limited. All rights resered. </span><span>京ICP备11019727号</span> </div>
+    </div>
+</body>
+</html>

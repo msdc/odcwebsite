@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<link href="~/Content/ODCHome.css" type="text/css" rel="stylesheet" />
+<script src="~/Scripts/Custom/jquery.ad-gallery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.ad-gallery').adGallery({
+            slideshow: {
+                autostart: true,
+                onStart: true,
+                start_label: '',
+                stop_label: '',
+                countdown_prefix: '',
+                countdown_sufix: '',
+                stop_on_scroll: false
+            }
+
+        });
+
+    });
+</script>
+<div id="content">
+        <div id="gallery" class="ad-gallery">
+            <div class="ad-image-wrapper">
+            </div>
+            <div class="ad-controls">
+            </div>
+            <div class="ad-nav">
+                <div class="ad-thumbs">
+                    <ul class="ad-thumb-list">
+                        <li>
+                            <a href="../../Content/Images/Banner/Banner_OfficeMap.png">
+                                <img src="../../Content/Images/Banner/OfficeMap_thub_normal.png" class="image0" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../../Content/Images/Banner/Banner_BI.png">
+                                <img src="../../Content/Images/Banner/BI_thub_normal.png" class="image1" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../../Content/Images/Banner/Banner_Ilife.PNG">
+                                <img src="../../Content/Images/Banner/Ilife_thub_normal.png" class="image2" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../../Content/Images/Banner/Banner_UX.png">
+                                <img src="../../Content/Images/Banner/UX_thub_normal.png" class="image3" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clients">
+            <img src="../../Content/Images/clients_logo.png" />
+        </div>
+    </div>

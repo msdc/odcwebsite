@@ -1,0 +1,18 @@
+﻿@model ODCShowCase.WebUI.Models.NewsIndexViewModle
+
+@{
+    ViewBag.Title = "News";
+}
+
+<link type="text/css" href="~/Content/ODCNews.css" rel="stylesheet" />
+<div id="newsContainer">
+    @foreach (var n in Model.Newses)
+    {
+        Html.RenderPartial("NewsItem", n);        
+
+    }
+
+    <div class="pager">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x,currentController="News" }))
+    </div>
+</div>

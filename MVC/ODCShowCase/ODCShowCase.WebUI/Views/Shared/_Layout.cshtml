@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+   <link rel="stylesheet" type="text/css" href="~/Content/ODCDefualtStyle.css" />
+   <script type="text/javascript" src="~/Scripts/jquery-1.8.2.min.js"></script>
+   </head>
+<body>
+    <div id="header">
+        <div id="banner">  
+          <a id="logoLink" href="/"><img width="146" height="52" src="@Url.Content("~/Content/Images/header_ODC_Logo.png")" alt="" /></a>
+          <div id="topNav">
+             @{ Html.RenderAction("Menu", "Nav");}                        
+          </div>           
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div id="footer">
+        <img src="@Url.Content("~/Content/Images/Footer_ODC_logo.png")" />
+        <div><span>Copyright 2013 iSoftStone Holdings Limited. All rights resered. </span><span>京ICP备11019727号</span> </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+﻿html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body
+{
+    text-align: center;
+    margin: auto;
+    line-height: 1;
+    background-color:#f1f1f1;
+}
+
+ul
+{
+    list-style-image: url(list-style.gif);
+}
+
+/* about header*/
+#header
+{
+    width: 100%;
+    height: 52px;
+    background: url("Images/Header_bg.png") repeat-x;
+    margin-top: 2px;    
+    min-width:1150px;
+}
+
+#content {
+min-width:1150px;
+}
+
+#banner
+{
+    width: 56%;
+    /*background: url("Images/header_ODC_Logo.png") left no-repeat;*/
+    line-height: 300%;
+    position: relative;
+    height: 52px;
+    margin: auto;    
+}
+
+    #topNav a
+    {
+        font-family:'Microsoft YaHei';
+        background: url("Images/topNav_BG.png") repeat-x;
+        background-position: 0 0;
+        font-weight: 400;
+        color: #808080;
+        float: left;
+        text-decoration: none;
+        padding-left: 12px;
+        padding-right: 12px;
+        border-right: solid 2px #E8E8E8;
+    }
+
+        #topNav a:hover
+        {
+            color: #000;
+            background-position: 0 -52px;
+        }
+
+    #topNav .selected
+    {
+        color: #000;
+        background-position: 0 -52px;
+    }
+
+#topNav
+{
+    float: right;
+}
+#logoLink
+{
+    display:block;
+    float:left;
+    height:52px;
+}
+
+#ctContainer
+{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 36px;
+    margin-bottom: 20px;
+    overflow:visible;
+    background: url(Images/line.png) repeat-x;
+    background-position: center;
+}
+
+/*footer*/
+#footer
+{
+    background-color: #434343;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+}
+
+#footer > img
+{
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+#footer span
+{
+    padding: 0 15px;
+    font-family: 宋体 Arial;
+    font-weight: lighter;
+    color: #afafaf;
+}

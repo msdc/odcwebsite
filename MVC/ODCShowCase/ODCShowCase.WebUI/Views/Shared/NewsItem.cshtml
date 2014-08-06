@@ -1,0 +1,8 @@
+﻿@model ODCShowCase.Domain.Entities.News
+
+<div class="newsItem">
+    <img width="136" alt="" src="@Url.Content(Model.NewsIconURL)" />
+    <h1>@Model.NewsTitle</h1>
+    <p>@Model.Summery</p>
+    <span>@Model.NewsDate.ToShortDateString()</span> <a href="@Model.DetailPageURL"><span>阅读全文</span></a>
+</div>

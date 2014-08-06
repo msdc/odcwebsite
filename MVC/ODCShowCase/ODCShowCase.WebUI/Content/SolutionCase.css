@@ -1,0 +1,102 @@
+﻿#SolutionContainer {
+    min-height: 580px;
+    width: 752px;
+    margin: 36px auto;
+    border-top: 1px solid #cdcdcd;    
+    text-align: left;
+    font-family: SimSun;
+    color:#333333;
+    font-size: 12px;
+    line-height: 200%;
+}
+
+.pageTitle {
+    font-size: 23px;
+    color: #000000;
+    font-weight: bold;
+    margin: 15px 0px 16px 25px;
+}
+
+.pageDesCription {
+    /*font-size: 14px;*/
+    color: #6b6b6b;
+    /*line-height: 200%;*/
+    margin: 0px 0px 27px 25px;
+}
+
+.ui-widget-content {
+    border: none;
+    background-color: #e8e8e8;
+    background: none;
+}
+
+.ui-tabs-panel {
+    background-color: #e8e8e8 !important;
+}
+
+.ui-tabs-panel p{
+    display:block;    
+    margin-left:-10px;
+    margin-right:-20px;
+    margin-bottom:32px;
+}
+
+.ui-tabs-panel h1{
+    display:block;
+    font-weight:400;
+    font-size:20px;
+    margin-left:-10px;
+    margin-right:-20px;
+    margin-bottom:16px;
+}
+
+.ui-widget-header {
+    border: none;
+    background-image: none;
+    background-color: #e8e8e8;
+    display: block;
+    margin-top: -4px !important;    
+}
+
+    .ui-widget-header .ui-state-default {
+        /*background-color: #e7a96f;*/
+        background-image: none;
+        border: none;
+    }
+
+    .ui-widget-header .ui-state-active {
+        background-image: none;
+        background-color: #e8e8e8;
+        border: none;
+    }
+
+.ui-corner-top {
+    border-radius: 0px;
+}
+
+.ui-tabs .ui-tabs-nav {
+    padding: 0px;
+}
+
+    .ui-tabs .ui-tabs-nav li {
+        margin-right: 1px;
+        float: left;    
+        height: 57px;    
+    }
+
+        .ui-tabs .ui-tabs-nav li a {
+            line-height:180%;
+            padding-left: 14px;
+            padding-right: 15px;
+            font-family: SimHei;
+            font-size: 22px;            
+            color: #ffffff;            
+        }
+
+        .ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+            padding-left: 13px;
+            padding-right: 14px;
+            font-family: SimHei;
+            font-size: 22px;            
+            color: #6f91b5;
+        }

@@ -1,0 +1,609 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cases Page</title>
+    <script src="Scripts/jquery-1.7.1.min.js"></script>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+        {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        body
+        {
+            text-align: center;
+            margin: auto;
+            line-height: 1;
+        }
+        ul
+        {
+            list-style-image: url(list-style.gif);
+        }
+        #gallery
+        {
+            width: 100%;
+            margin: auto;
+            background-color: #e4e4e4;
+            padding-top: 40px;
+        }
+        #descriptions .ad-image-description
+        {
+            position: absolute;
+        }
+        #descriptions .ad-image-description .ad-description-title
+        {
+            display: block;
+        }
+        /* about silder */
+        .ad-gallery
+        {
+            width: 600px;
+        }
+        .ad-gallery, .ad-gallery *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        .ad-gallery .ad-image-wrapper
+        {
+            width: 100%;
+            height: 473px; /*margin-bottom: 10px;*/
+            position: relative;
+            overflow: hidden;
+        }
+        .ad-gallery .ad-image-wrapper .ad-loader
+        {
+            position: absolute;
+            z-index: 10;
+            top: 48%;
+            left: 48%;
+            border: 1px solid #CCC;
+        }
+        .ad-gallery .ad-image-wrapper .ad-next
+        {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 25%;
+            height: 100%;
+            cursor: pointer;
+            display: block;
+            z-index: 200;
+        }
+        .ad-gallery .ad-image-wrapper .ad-prev
+        {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25%;
+            height: 100%;
+            cursor: pointer;
+            display: block;
+            z-index: 200;
+        }
+        .ad-gallery .ad-image-wrapper .ad-prev, .ad-gallery .ad-image-wrapper .ad-next
+        {
+            /* Or else IE will hide it */
+            background: url(Images/trans.gif);
+        }
+        .ad-gallery .ad-image-wrapper .ad-prev .ad-prev-image, .ad-gallery .ad-image-wrapper .ad-next .ad-next-image
+        {
+            background: url(Images/ad_prev.png);
+            width: 30px;
+            height: 30px;
+            display: none;
+            position: absolute;
+            top: 47%;
+            left: 0;
+            z-index: 101;
+        }
+        .ad-gallery .ad-image-wrapper .ad-next .ad-next-image
+        {
+            background: url(Images/ad_next.png);
+            width: 30px;
+            height: 30px;
+            right: 0;
+            left: auto;
+        }
+        .ad-gallery .ad-image-wrapper .ad-image
+        {
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: 9;
+        }
+        .ad-gallery .ad-image-wrapper .ad-image a img
+        {
+            border: 0;
+        }
+        .ad-gallery .ad-image-wrapper .ad-image .ad-image-description
+        {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            padding: 7px;
+            text-align: left;
+            width: 100%;
+            z-index: 2;
+            background: url(Images/opa75.png);
+            color: #000;
+        }
+        * html .ad-gallery .ad-image-wrapper .ad-image .ad-image-description
+        {
+            background: none;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (enabled=true, sizingMethod=scale, src= 'opa75.png' );
+        }
+        .ad-gallery .ad-image-wrapper .ad-image .ad-image-description .ad-description-title
+        {
+            display: block;
+        }
+        .ad-gallery .ad-controls
+        {
+            /*height: 20px;*/
+        }
+        .ad-gallery .ad-info
+        {
+            float: left;
+            color: #e4e4e4;
+        }
+        .ad-gallery .ad-slideshow-controls
+        {
+            float: right;
+        }
+        .ad-gallery .ad-slideshow-controls .ad-slideshow-start, .ad-gallery .ad-slideshow-controls .ad-slideshow-stop
+        {
+            padding-left: 5px;
+            cursor: pointer;
+        }
+        .ad-gallery .ad-slideshow-controls .ad-slideshow-countdown
+        {
+            padding-left: 5px;
+            font-size: 0.9em;
+            color: #e4e4e4;
+        }
+        .ad-gallery .ad-slideshow-running .ad-slideshow-start
+        {
+            cursor: default;
+            font-style: italic;
+        }
+        .ad-gallery .ad-nav
+        {
+            width: 543px;
+            position: relative;
+            text-align: center;
+            margin: auto;
+        }
+        .ad-gallery .ad-forward, .ad-gallery .ad-back
+        {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            z-index: 10;
+        }
+        /* IE 6 doesn't like height: 100% */
+        * html .ad-gallery .ad-forward, .ad-gallery .ad-back
+        {
+            height: 100px;
+        }
+        .ad-gallery .ad-back
+        {
+            cursor: pointer;
+            top: 35px;
+            left: -74px;
+            width: 48px;
+            display: block;
+            background: url(Images/banner_arrowleft_default.png) no-repeat;
+        }
+        .ad-gallery .ad-forward
+        {
+            cursor: pointer;
+            top: 35px;
+            right: -74px;
+            width: 48px;
+            display: block;
+            background: url(Images/banner_arrowright_default.png) no-repeat;
+        }
+        .ad-gallery .ad-nav .ad-thumbs
+        {
+            overflow: hidden;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+        }
+        .ad-gallery .ad-thumbs .ad-thumb-list
+        {
+            float: left;
+            width: 9000px;
+            list-style: none;
+        }
+        .ad-gallery .ad-thumbs li
+        {
+            float: left;
+            padding: 14px 74px 14px 0;
+        }
+        .ad-gallery .ad-thumbs li:last-of-type
+        {
+            padding-right: 0;
+        }
+        .ad-gallery .ad-thumbs li a
+        {
+            display: block;
+        }
+        .ad-gallery .ad-thumbs li a img
+        {
+            display: block;
+        }
+        .ad-gallery .ad-thumbs li a.ad-active img
+        {
+        }
+        /* Can't do display none, since Opera won't load the images then */
+        .ad-preloads
+        {
+            position: absolute;
+            left: -9000px;
+            top: -9000px;
+        }
+        /* about header*/
+        #header
+        {
+            width: 100%;
+            height: 52px;
+            background: url("Images/Header_bg.png") repeat-x;
+            margin-top: 2px;
+        }
+        #logo
+        {
+            width: 56%;
+            background: url("Images/header_ODC_Logo.png") left no-repeat;
+            position: relative;
+            height: 52px;
+            margin: auto;
+        }
+        .banner
+        {
+            height: 52px;
+            list-style: none;
+            text-decoration: none;
+            float: right;
+            position: relative;
+        }
+        .banner > li
+        {
+            background: url("Images/banner.png") no-repeat;
+            height: 52px;
+            float: left;
+        }
+        .banner .nav-case
+        {
+            background-position: 0 -52px;
+            width: 104px;
+        }
+        .banner .nav-study
+        {
+            background-position: -104px 0;
+            width: 130px;
+        }
+        .banner .nav-coe
+        {
+            background-position: -234px 0;
+            width: 104px;
+        }
+        .banner .nav-news
+        {
+            background-position: -338px 0;
+            width: 101px;
+        }
+        .banner .nav-us
+        {
+            background-position: -439px 0;
+            width: 101px;
+        }
+        .banner .nav-case:hover
+        {
+            background-position: 0 -52px;
+        }
+        .banner .nav-study:hover
+        {
+            background-position: -104px -52px;
+        }
+        .banner .nav-coe:hover
+        {
+            background-position: -234px -52px;
+        }
+        .banner .nav-news:hover
+        {
+            background-position: -338px -52px;
+        }
+        .banner .nav-us:hover
+        {
+            background-position: -439px -52px;
+        }
+        
+        
+        #casetitle
+        {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 36px;
+            margin-bottom: 36px;
+            background: url(Images/line.png) repeat-x;
+            background-position: center;
+        }
+        
+        /*footer*/
+        #footer
+        {
+            background-color: #434343;
+            text-align: center;
+            margin: 0;
+            padding: 20px 0;
+        }
+        
+        #footer > img
+        {
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+        
+        #footer span
+        {
+            padding: 0 15px;
+            font-family: 宋体 Arial;
+            font-weight: lighter;
+            color: #afafaf;
+        }
+    </style>
+    <style>
+        @-webkit-keyframes myfirst {
+            0% {
+                margin-left: 2000px;
+            }
+
+            100% {
+                margin-left: 0px;
+            }
+        }
+
+
+        @keyframes myfirst {
+            0% {
+                margin-left: 2000px;
+            }
+
+            100% {
+                margin-left: 0px;
+            }
+        }
+
+        @-moz-keyframes mysecond {
+            0% {
+                margin-left: 2000px;
+            }
+
+            100% {
+                margin-left: 0px;
+            }
+        }
+
+        @-o-keyframes mythird {
+            0% {
+                margin-left: 2000px;
+            }
+
+            100% {
+                margin-left: 0px;
+            }
+        }
+
+        body * {
+            padding: 0;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        .container {
+            width: 714px;
+            height: auto;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .row {
+            width: 120%;
+            height: 190px;
+            overflow: hidden;
+        }
+
+            .row div {
+                width: 226px;
+                height: 113px;
+                float: left;
+                /*-webkit-animation: myfirst;
+                -moz-animation: myfirst;
+                -ms-animation: myfirst;
+                -o-animation: myfirst;
+                animation: myfirst;*/
+            }
+
+                .row div.split {
+                    width: 17px;
+                    height: 190px;
+                }
+
+            .row p.title {
+                font-size: 16px;
+                font-weight: bold;
+                padding: 10px 0 5px 0px;
+            }
+
+            .row p.type {
+                font-size: 16px;
+                font-weight: bold;
+                color: #7d7d7d;
+            }
+    </style>
+    <script src="Scripts/imagedata.js"></script>
+    <script>
+        (function () {
+            var flyinto = function (options) {
+                var params = {
+                    columns: 3,
+                    rows: 10,
+                    renderTo: "container",
+                    rowClass: "row",
+                    columnSpeed: undefined,
+                    splitClass: "split",
+                    flySpeed: 0.2,
+                    animationName: "fisrt",
+                    rowContent: undefined
+                };
+                var settings = extend({}, params, options);
+                function extend() {
+                    var target = arguments[0] || {}, i = 1, length = arguments.length, source, name;
+                    for (; i < length; i++) {
+                        if ((source = arguments[i]) != null) {
+                            for (name in source) {
+                                target[name] = source[name];
+                            }
+                        }
+                    }
+                    return target;
+                }
+                var container = document.getElementById(settings.renderTo);
+                container.innerHTML = "";
+                var rowContent = settings.rowContent;
+
+                function buildDivSplit() {
+                    var div = document.createElement("div");
+                    div.className = settings.splitClass;
+                    return div;
+                }
+
+                function buildRow() {
+                    var row = undefined;
+                    var speed;
+                    for (var i = 0, len = settings.rows; i < len; i++) {
+                        row = document.createElement("div");
+                        row.className = settings.rowClass;
+                        speed = typeof settings.columnSpeed == "function" ? settings.columnSpeed :
+                            settings.flySpeed + i * 0.1;
+                        for (var j = 0, clen = settings.columns; j < clen; j++) {
+                            var div = typeof rowContent == "function" ? rowContent.call(this, i, j, settings.columns) : document.createElement("div");
+                            if (div == undefined) {
+                                continue;
+                            }
+                            var divsplit = buildDivSplit();
+                            row.appendChild(div);
+
+                            var _speed = typeof speed == "function" ? speed.call(this, i, j) : speed + j * 0.2;
+
+                            setAnimation(div, _speed);
+                            if (j < clen - 1) {
+                                row.appendChild(divsplit);
+                            }
+                        }
+
+                        container.appendChild(row);
+                    }
+
+                }
+
+                function setAnimation(div, speed) {
+
+                    var animation = "myfirst " + speed + "s";
+                    if (div.style.webkitAnimation != undefined) {
+                        div.style.webkitAnimation = animation;
+                    }
+                    else if (div.style.MozAnimation != undefined) {
+                        div.style.MozAnimation = animation;
+
+                    }
+                    else if (div.style.oanimation != undefined) {
+                        div.style.oanimation = animation;
+                    }
+                    else if (div.style.msAnimation != undefined) {
+                        div.style.msAnimation = animation;
+                    }
+                    else {
+                        div.style.animation = animation;
+                    }
+                }
+
+
+                this.buildRow = buildRow;
+
+            };
+
+            window.flyinto = flyinto;
+
+
+        })(window);
+
+        function displayRow(imagemap) {
+            var _cols = 3;
+            var _rows = Math.ceil(imagemap.cases.length / _cols);
+            var fly = new flyinto({
+                rows: _rows,
+                columns: _cols,
+                rowContent: function (row, col, cols) {
+                    var caseobj = imagemap.cases[row * cols + col];
+                    if (caseobj == undefined) return undefined;
+                    var div = document.createElement("div");
+                    var img = document.createElement("img");
+                    img.src = caseobj.url;
+                    img.alt = caseobj.text;
+                    var p1 = document.createElement("p");
+                    p1.className = "title";
+                    p1.innerHTML = caseobj.text;
+                    var p2 = document.createElement("p");
+                    p2.className = "type";
+                    p2.innerHTML = caseobj.type;
+                    div.appendChild(img);
+                    div.appendChild(p1);
+                    div.appendChild(p2);
+                    return div;
+                }
+            });
+            fly.buildRow();
+        }
+    </script>
+    <script src="Scripts/iChart/iChart.js"></script>
+    <script src="Scripts/ODC_CaseStudy.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            <ul class="banner">
+                <li class="nav-case"></li>
+                <li class="nav-study"></li>
+                <li class="nav-coe"></li>
+                <li class="nav-news"></li>
+                <li class="nav-us"></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="gallery" class="ad-gallery">
+            <canvas id="c1" width="711" height="143">canvas not supported</canvas>
+        </div>
+        <div id="casetitle" class="container">
+            <span style="background-color: White; padding: 0 10px; color: #666666">案例展示</span></div>
+        <div id="container" class="container">
+            <script>
+                displayRow(source.imagemapalldata);
+            </script>
+        </div>
+    </div>
+    <div id="footer">
+        <img src="Images/Footer_ODC_logo.png" />
+        <div>
+            <span>Copyright 2013 iSoftStone Holdings Limited. All rights resered. </span><span>京ICP备11019727号</span>
+        </div>
+    </div>
+</body>
+</html>

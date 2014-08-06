@@ -1,0 +1,16 @@
+﻿@model ODCShowCase.WebUI.Models.NavNode[]
+
+@foreach (var navNode in Model)
+{
+    @Html.RouteLink(navNode.DisplayName, 
+                    new
+                    {
+                        controller = navNode.ControlerName,
+                        action = navNode.ActionName, 
+                        currentController = navNode.ControlerName,                                               
+                    },
+                    new
+                    {
+                        @class = navNode.ControlerName == ViewBag.SelectedNavNodeName ? "selected" : null
+                    })
+}

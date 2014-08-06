@@ -1,0 +1,344 @@
+﻿@{
+    ViewBag.Title = "ShowCase";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/ShowCase.css" />
+
+<script>
+    (function () {
+        var flyinto = function (options) {
+            var params = {
+                columns: 3,
+                rows: 10,
+                renderTo: "container",
+                rowClass: "row",
+                columnSpeed: undefined,
+                splitClass: "split",
+                flySpeed: 0.2,
+                animationName: "fisrt",
+                rowContent: undefined
+            };
+            var settings = extend({}, params, options);
+            function extend() {
+                var target = arguments[0] || {}, i = 1, length = arguments.length, source, name;
+                for (; i < length; i++) {
+                    if ((source = arguments[i]) != null) {
+                        for (name in source) {
+                            target[name] = source[name];
+                        }
+                    }
+                }
+                return target;
+            }
+            var container = document.getElementById(settings.renderTo);
+            container.innerHTML = "";
+            var rowContent = settings.rowContent;
+
+            function buildDivSplit() {
+                var div = document.createElement("div");
+                div.className = settings.splitClass;
+                return div;
+            }
+
+            function buildRow() {
+                var row = undefined;
+                var speed;
+                for (var i = 0, len = settings.rows; i < len; i++) {
+                    row = document.createElement("div");
+                    row.className = settings.rowClass;
+                    speed = typeof settings.columnSpeed == "function" ? settings.columnSpeed :
+                        settings.flySpeed + i * 0.1;
+                    for (var j = 0, clen = settings.columns; j < clen; j++) {
+                        var div = typeof rowContent == "function" ? rowContent.call(this, i, j, settings.columns) : document.createElement("div");
+                        if (div == undefined) {
+                            continue;
+                        }
+                        var divsplit = buildDivSplit();
+                        row.appendChild(div);
+
+                        var _speed = typeof speed == "function" ? speed.call(this, i, j) : speed + j * 0.2;
+
+                        setAnimation(div, _speed);
+                        if (j < clen - 1) {
+                            row.appendChild(divsplit);
+                        }
+                    }
+
+                    container.appendChild(row);
+                }
+
+            }
+
+            function setAnimation(div, speed) {
+
+                var animation = "myfirst " + speed + "s";
+                if (div.style.webkitAnimation != undefined) {
+                    div.style.webkitAnimation = animation;
+                }
+                else if (div.style.MozAnimation != undefined) {
+                    div.style.MozAnimation = animation;
+
+                }
+                else if (div.style.oanimation != undefined) {
+                    div.style.oanimation = animation;
+                }
+                else if (div.style.msAnimation != undefined) {
+                    div.style.msAnimation = animation;
+                }
+                else {
+                    div.style.animation = animation;
+                }
+            }
+
+
+            this.buildRow = buildRow;
+
+        };
+
+        window.flyinto = flyinto;
+
+
+    })(window);
+
+    function displayCaseDetails(materialObjs) {
+
+        var containerObj = document.getElementById("container");
+        containerObj.innerHTML = "";
+
+        var mediasInOneObj, tempImageObj, tempPObj, tempHObj;
+
+        for (var materialObj in materialObjs) {
+
+            mediasInOneObj = materialObjs[materialObj].Medias;
+
+            for (var media in mediasInOneObj) {
+
+                if (mediasInOneObj[media].DisplayLocation == null
+                    || mediasInOneObj[media].DisplayLocation == ""
+                    || mediasInOneObj[media].DisplayLocation == "Above") {
+                    if (mediasInOneObj[media].Type == "Image") {
+                        tempImageObj = document.createElement("img");
+                        tempImageObj.src = mediasInOneObj[media].Location;
+                        tempImageObj.alt = "";
+
+                        containerObj.appendChild(tempImageObj);
+                    }
+                }
+            }
+
+            if (materialObjs[materialObj].TextContent.TextType == "Title") {
+                tempHObj = document.createElement("h1");
+                tempHObj.innerText = materialObjs[materialObj].TextContent.TextContent;
+                typeof tempHObj.textContent != "undefined" ? tempHObj.textContent = materialObjs[materialObj].TextContent.TextContent:"";
+                tempHObj.className = "caseTitle";
+                containerObj.appendChild(tempHObj);
+            }
+
+            if (materialObjs[materialObj].TextContent.TextType == ""
+                || materialObjs[materialObj].TextContent.TextType == null
+                || materialObjs[materialObj].TextContent.TextType == "Description") {
+                tempPObj = document.createElement("p");
+                tempPObj.innerText = materialObjs[materialObj].TextContent.TextContent;
+                typeof tempPObj.textContent != "undefined" ? tempPObj.textContent = materialObjs[materialObj].TextContent.TextContent : "";
+                tempPObj.className = "Description";
+                containerObj.appendChild(tempPObj);
+            }
+
+            for (var media in mediasInOneObj) {
+
+                if (mediasInOneObj[media].DisplayLocation == "Below") {
+                    if (mediasInOneObj[media].Type == "Image") {
+                        tempImageObj = document.createElement("img");
+                        tempImageObj.src = mediasInOneObj[media].Location;
+                        tempImageObj.alt = "";
+
+                        containerObj.appendChild(tempImageObj);
+                    }
+                }
+            }
+        }
+    }
+
+    function changeContainerHearderLine(toOriginal) {
+
+        var hearderLineContainer = document.getElementById("ctContainer");
+
+        if (toOriginal) {
+            var spanObj = document.createElement("span");
+            spanObj.className = "caseShowTitle";
+            spanObj.innerText = "案例展示";
+            hearderLineContainer.innerHTML = "";
+            hearderLineContainer.className = "container";
+            hearderLineContainer.appendChild(spanObj);
+        }
+        else {
+            var inputObj = document.createElement("input");
+            inputObj.type = "image";
+            inputObj.src = "../../Content/Images/icon_00.png";
+            inputObj.alt = "";
+            inputObj.className = "raletedIcon";
+            inputObj.onclick = function () {
+                $("#raletedCase").slideToggle(600);
+            };
+
+            hearderLineContainer.innerHTML = "";
+            hearderLineContainer.className = "caseLineContainer";
+            hearderLineContainer.appendChild(inputObj);
+        }
+    }
+
+    function buildRaletedCases(cases) {
+
+        if (cases == null) return false;
+
+        var raletedCasesContainer = document.getElementById("raletedCase");
+        raletedCasesContainer.innerHTML = "";
+        var aObj, divObj, url;
+
+        for (var caseItem in cases) {
+            aObj = document.createElement("a");
+            aObj.href = "#";
+            aObj.onclick = function (id) {
+                return function () {
+                    changeContainerHearderLine(false);
+                    url = location.protocol + "//" + location.host + "/materialsapi/CaseMaterialsAPI/" + id;
+                    _requestAndRender(url, "GET", displayCaseDetails);
+                    updateActiveCase(id);
+
+                    $("#raletedCase").slideToggle(600);
+                }
+            }(cases[caseItem].CaseId);
+
+            divObj = document.createElement("div");
+            divObj.innerText = cases[caseItem].Name;
+            divObj.id = cases[caseItem].CaseId;
+            divObj.classList.add("raletedCaseItem");
+            divObj.classList.add("disActiveCaseItem");
+            aObj.appendChild(divObj);
+            raletedCasesContainer.appendChild(aObj);
+        }
+    }
+
+    function updateActiveCase(caseId) {
+        var currActiveDiv = document.getElementsByClassName("activeCaseItem");
+        if (currActiveDiv.length > 0) {
+            currActiveDiv[0].classList.add("disActiveCaseItem");
+            currActiveDiv[0].classList.remove("activeCaseItem");            
+        }
+        var activeDiv = document.getElementById(caseId);
+        activeDiv.classList.remove("disActiveCaseItem");
+        activeDiv.classList.add("activeCaseItem");
+    }
+
+    function displayRow(imagemap) {
+
+        if (imagemap == null) return false;
+        //hide the raletedCase if it is showed.
+        var relatedCaseContener = document.getElementById("raletedCase");
+        relatedCaseContener!= null ? relatedCaseContener.style.display = "none":"";
+
+        var _cols = 3;
+        var _rows = Math.ceil(imagemap.length / _cols);
+        var fly = new flyinto({
+            rows: _rows,
+            columns: _cols,
+            rowContent: function (row, col, cols) {
+                var caseobj = imagemap[row * cols + col];
+                if (caseobj == undefined) return undefined;
+                var div = document.createElement("div");
+                var link = document.createElement("a");
+                link.href = "#";
+                link.onclick = function () {
+                    changeContainerHearderLine(false);
+                    var url = location.protocol + "//" + location.host + "/materialsapi/CaseMaterialsAPI/" + caseobj.CaseId;
+                    _requestAndRender(url, "GET", displayCaseDetails);
+
+                    var relatedUrl = location.protocol + "//" + location.host + "/api/casesapi/" + caseobj.Category;
+                    _requestAndRender(relatedUrl, "GET", buildRaletedCases);
+                    updateActiveCase(caseobj.CaseId);
+                };
+                var img = document.createElement("img");
+                img.src = caseobj.ImageURL;
+                img.alt = caseobj.Name;
+                var p1 = document.createElement("p");
+                p1.className = "title";
+                p1.innerHTML = caseobj.Name;
+                //var p2 = document.createElement("p");
+                //p2.className = "type";
+                //p2.innerHTML = caseobj.Category;
+                link.appendChild(img);
+                div.appendChild(link);
+                div.appendChild(p1);
+                //div.appendChild(p2);
+                return div;
+            }
+        });
+        fly.buildRow();
+
+        setContainerHight();
+    }
+
+
+    function setContainerHight() {
+
+        var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        h -= 151;
+        document.getElementById("content").style.minHeight = h + "px";
+    }
+</script>
+@*<script type="text/javascript" src="~/Scripts/Custom/imagedata.js"></script>*@
+<script type="text/javascript" src="~/Scripts/Custom/iChart.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/ODC_CaseStudy.js"></script>
+
+<div id="content">
+    <div id="gallery" class="ad-gallery">
+        <canvas id="c1" width="711" height="143">canvas not supported</canvas>
+    </div>
+    <div id="ctContainer" class="container">
+        <span class="caseShowTitle">案例展示</span>
+    </div>
+    <div id="raletedCase" class="container" style="height: auto; text-align: left; display: none; margin-bottom: 33px;">
+    </div>
+    <div id="container" class="container">
+        <script>
+            function createXHR() {
+                if (typeof XMLHttpRequest != "undefined") {
+                    return new XMLHttpRequest();
+                }
+                else if (typeof ActiveXObject != "undefined") {
+                    if (typeof arguments.callee.activeXString != "string") {
+                        var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"];
+
+                        for (var i = 0, len = versions.length; i < len; i++) {
+                            try {
+                                var xhr = new ActiveXObject(versions[i]);
+                                arguments.callee.activeXString = versions[i];
+                                return xhr;
+                            } catch (ex) { }
+                        }
+                    }
+
+                    return new ActiveXObject(arguments.callee.activeXString);
+                }
+                else {
+                    throw new Error("No XHT object available");
+                }
+            }
+
+            /*Request Json Data*/
+            var _requestAndRender = function (url, method, renderFun) {
+                var xmlhttp;
+                xmlhttp = createXHR();
+                xmlhttp.open(method, url, false);
+                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                xmlhttp.send(null);
+                if (xmlhttp.Status = 200) renderFun(JSON.parse(xmlhttp.responseText));
+            }
+            /*End Request Json Data*/
+
+            var url = location.protocol + "//" + location.host + "/api/casesapi/"
+            _requestAndRender(url, "GET", displayRow);
+            //displayRow(source.imagemapalldata);
+        </script>
+    </div>
+</div>

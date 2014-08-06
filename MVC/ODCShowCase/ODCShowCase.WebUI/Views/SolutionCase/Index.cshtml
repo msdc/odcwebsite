@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Solutions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/themes/base/css")
+<link type="text/css" href="~/Content/SolutionCase.css" rel="stylesheet" />
+<div id="SolutionContainer">
+
+    <h1 class="pageTitle">行业解决方案</h1>
+    <p class="pageDesCription">作为i专业面向企业定制软件开发和解决方案的服务专家，软通动力为客户项目的任何阶段提供理货多样的IT服务。此外，我们技术超群，经验丰富的开发人员还可以提供咨询支持等服务，帮助您实现信息化管理的最佳实践，以满足企业快速发展的不同需求。</p>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">高科技</a></li>
+            <li style="background-color:#82c1ca;"><a href="#tabs-2">通讯</a></li>
+            <li style="background-color:#e7a96f;"><a href="#tabs-3">银行</a></li>
+            <li style="background-color:#a9c294;"><a href="#tabs-3">企业金融</a></li>
+            <li style="background-color:#d99272;"><a href="#tabs-3">保险</a></li>
+            <li style="background-color:#eca299;"><a href="#tabs-3">医疗健康</a></li>
+            <li style="background-color:#9ab8b6;"><a href="#tabs-3">电力</a></li>
+            <li style="background-color:#e7a96f;"><a href="#tabs-3">其他行业</a></li>
+        </ul>
+        <div id="tabs-1">
+            <p>软通动力为高科技企业定制应用系统、解决方案或基础架构，以满足您的业务需求并强化在七行业中的优势。我们能帮助客户确定对应用系统或者产品的需求，并管理和维护其整个生命周期</p>
+            <h1>软通动力Push Mail解决方案</h1>
+            <p>邮件推送是近年来兴起的一项无线网络增值应用，即是“推送”技术将电子邮件主动，安全地推送到用户的移动终端（手机）上，实现邮件的自动通知功能</p>
+            <h1>商业分析（BA）解决方案</h1>
+            <p>专注于通信企业运营能力及决策能力的提高，致力于企业内部资源深层次的利用，包括对各业务系统流程的分析及改进，对历史沉淀数据潜藏信息的挖掘等</p>
+        </div>
+        <div id="tabs-2">
+            <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+        </div>
+        <div id="tabs-3">
+            <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+            <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryui")
+<script>
+    $(function () {
+        $("#tabs").tabs();
+
+        $('#tabs').bind('tabsselect', function (event, ui) {
+            var colorList = ["#82c1ca", "#d99272", "#a9c294", "#eca299", "#e7a96f", "#9ab8b6", "#e7a96f", "#6f91b5"];
+
+            var colorIndex = 0;
+            
+            for (var index = 0; index < $("#tabs ul li").length; index++) {
+
+                if (index != ui.index) {
+                    $("#tabs ul li")[index].style.backgroundColor = colorList[colorIndex++];
+                }
+                else {
+                    $("#tabs ul li")[index].style.backgroundColor = "#e8e8e8";
+                }
+            }
+        });
+
+    })
+</script>
+

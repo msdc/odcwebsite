@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ODCShowCase.Domain.Entities.ShowCase>
+
+@{
+    ViewBag.Title = "ShowCases";
+}
+
+@foreach (var showCase in Model)
+{
+    <div class="item">
+        <h3>@showCase.Name</h3>
+            @showCase.Description
+        <h4>@showCase.CategoryId</h4>
+    </div>
+}

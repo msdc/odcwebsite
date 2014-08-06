@@ -1,0 +1,152 @@
+﻿@-webkit-keyframes myfirst {
+    0% {
+        margin-left: 2000px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
+
+
+@keyframes myfirst {
+    0% {
+        margin-left: 2000px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
+
+@-moz-keyframes mysecond {
+    0% {
+        margin-left: 2000px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
+
+@-o-keyframes mythird {
+    0%;
+
+{
+    margin-left: 2000px;
+}
+
+100% {
+    margin-left: 0px;
+}
+
+}
+
+body * {
+    padding: 0;
+    margin: 0;
+    font-family: Arial;
+}
+
+.caseShowTitle {
+    background-color:#f1f1f1;
+    padding: 0 10px;
+    color: #666666;
+}
+
+.container {
+    width: 714px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.row {
+    width: 120%;
+    height: 190px;
+    overflow: hidden;
+}
+
+    .row div {
+        width: 226px;
+        height: 113px;
+        float: left;
+        /*-webkit-animation: myfirst;
+            -moz-animation: myfirst;
+            -ms-animation: myfirst;
+            -o-animation: myfirst;
+            animation: myfirst;*/
+    }
+
+        .row div.split {
+            width: 17px;
+            height: 160px;
+        }
+
+    .row p.title {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 0 5px 0px;
+    }
+
+    .row p.type {
+        font-size: 16px;
+        font-weight: bold;
+        color: #7d7d7d;
+    }
+
+/*Styles used in show case index*/
+.caseTitle {
+    font-family: 'Segoe UI';
+    font-size: 40px;
+    font-weight: 600;
+    text-align: left;
+    margin: 12px 12px 12px 0px;
+}
+
+.Description {
+    text-align: left;
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    color: #808080;
+    margin: auto;
+    margin: 12px 12px 12px 0px;
+    line-height: 180%;
+}
+
+.raletedIcon {
+    margin-right: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color:#f1f1f1;
+}
+
+.caseLineContainer {
+    width: 714px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.raletedCaseItem {
+    height: 47px;
+    width: 117px;
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    text-align: center;
+    line-height: 300%;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    float: left;
+}
+
+.disActiveCaseItem {
+    background-color: #e8e8e8;
+    color: #333333;
+}
+
+.activeCaseItem {
+    background-color: #8b8c8a;
+    color: #ffffff;
+}

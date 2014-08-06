@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODCShowCase.Domain", "ODCShowCase.Domain\ODCShowCase.Domain.csproj", "{F1A408CC-91BA-4426-BA3F-02A4FCDB7300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODCShowCase.WebUI", "ODCShowCase.WebUI\ODCShowCase.WebUI.csproj", "{0787B3A2-4E8B-4D85-AF84-82B58210D1BA}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://msp-vstf:8080/tfs/odc
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ODCShowCase.Domain\\ODCShowCase.Domain.csproj
+		SccProjectName1 = ODCShowCase.Domain
+		SccLocalPath1 = ODCShowCase.Domain
+		SccProjectUniqueName2 = ODCShowCase.WebUI\\ODCShowCase.WebUI.csproj
+		SccProjectName2 = ODCShowCase.WebUI
+		SccLocalPath2 = ODCShowCase.WebUI
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1A408CC-91BA-4426-BA3F-02A4FCDB7300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A408CC-91BA-4426-BA3F-02A4FCDB7300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A408CC-91BA-4426-BA3F-02A4FCDB7300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A408CC-91BA-4426-BA3F-02A4FCDB7300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0787B3A2-4E8B-4D85-AF84-82B58210D1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0787B3A2-4E8B-4D85-AF84-82B58210D1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0787B3A2-4E8B-4D85-AF84-82B58210D1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0787B3A2-4E8B-4D85-AF84-82B58210D1BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
